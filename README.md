@@ -94,6 +94,14 @@ zip -r mn4-deeptutor-sync.mnaddon \
   vendor/ data/ assets/ pages/
 ```
 
+### Verification Status
+
+The developers have verified the functionality up to this step:
+
+![Verification Step](assets/screenshot.png)
+
+*Note: The development team has only tested up to this step. We welcome the community to share and feedback subsequent test results.*
+
 ## Contributing
 
 Pull requests are welcome. Please open an issue first to discuss what you
