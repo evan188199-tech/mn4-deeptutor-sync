@@ -16,17 +16,17 @@ and documents to a [DeepTutor](https://github.com/evan188199-tech/DeepTutor) ins
 ### Prerequisites
 
 - **MarginNote 4** (macOS or iPadOS)
-- **[AddonLib](https://github.com/evan188199-tech/AddonLib)** installed (provides
-  the runtime, `MNUtil`, `MNNote`, and HTTP fetch capabilities)
 - A running **DeepTutor** instance (v1.5.16+)
 
 ### Install
 
-1. Download `mnaddon.json`, `main.js`, `addon.js` from the latest
+1. Download `mn4-deeptutor-sync.mnaddon` from the latest
    [release](https://github.com/evan188199-tech/mn4-deeptutor-sync/releases).
-2. Select all three files and open them with MarginNote 4 (or drag them into
-   the MN4 window). The add-on will install automatically.
+2. Open the file with MarginNote 4 (or drag it into the MN4 window).
+   The add-on will install automatically.
 3. Restart MarginNote 4 if prompted.
+
+The AddonLib runtime is bundled -- no separate installation needed.
 
 ### Configure
 
@@ -63,25 +63,35 @@ and documents to a [DeepTutor](https://github.com/evan188199-tech/DeepTutor) ins
 
 ## Development
 
-This add-on depends on [AddonLib](https://github.com/evan188199-tech/AddonLib)
+This add-on bundles [AddonLib](https://github.com/evan188199-tech/AddonLib)
 for the MN4 runtime, `MNUtil` (HTTP, storage, UI), and `MNNote` (object
-wrappers). Make sure AddonLib is installed first.
+wrappers). If you are developing, clone AddonLib alongside this repo so
+the JS files are available locally.
 
 ### Project structure
 
 ```
-mnaddon.json  - Add-on manifest
+maddon.json  - Add-on manifest
 main.js       - Entry point: loads AddonLib modules and bootstraps the add-on
 addon.js      - Core logic: settings UI, sync engine, timer management
+runtime.js    - AddonLib runtime (bundled)
+mnutils.js    - AddonLib MNUtil (bundled)
+mnnote.js     - AddonLib MNNote (bundled)
+subfunc.js    - AddonLib sub-functions (bundled)
+vendor/       - AddonLib vendor libraries (bundled)
+data/         - Localization files
 ```
 
 ### Building a `.mnaddon` bundle
 
 A `.mnaddon` file is a ZIP archive containing the add-on files. To create
-one from the source:
+one from source:
 
 ```bash
-zip -r mn4-deeptutor-sync.mnaddon mnaddon.json main.js addon.js
+zip -r mn4-deeptutor-sync.mnaddon \
+  mnaddon.json main.js addon.js \
+  runtime.js mnutils.js mnnote.js subfunc.js \
+  vendor/ data/ assets/ pages/
 ```
 
 ## Contributing
